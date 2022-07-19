@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortcut mappings</title>
+</head>
+<body>
+    <ul id="shortcut-list"></ul>
+</body>
+
+<script>
+    fetch('/data').then((data) => {
+        data.json().then((json) => {
+            const ul = document.getElementById('shortcut-list');
+            Object.entries(json).forEach(([shortcut, url]) => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `${shortcut} => ${url}`
+                ul.appendChild(listItem)
+            })
+        });
+    });
+</script>
+</html>

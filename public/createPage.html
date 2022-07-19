@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Shortcut</title>
+
+</head>
+<body>
+    Shortcut
+    <input id="shortcut"/>
+    URL 
+    <input id="url"/>
+    <button id="add-button" onclick="submit()">Add</button>
+</body>
+
+<script>
+    function submit() {
+        const shortcut = document.getElementById('shortcut').value;
+        let url = document.getElementById('url').value;
+        url = /(http)s?\:\/\//.test(url) ? url : 'https://' + url
+        fetch('/add', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({shortcut, url})
+        })
+    }
+</script>
+</html>
