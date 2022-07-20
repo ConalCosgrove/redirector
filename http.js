@@ -52,7 +52,7 @@ function updateKeywordsFile(newMapping) {
   writeFileSync('keywords.json', JSON.stringify(newMapping))
 }
 
-server.listen('80', () => {
+server.listen('9919', () => {
 
 })
 
