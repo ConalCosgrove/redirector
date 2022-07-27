@@ -17,9 +17,11 @@ server.use(express.json())
 
 server.get('/', (req, res) => {
   const query = req.query.keyword
-  if (keywords[query]) {
-    console.log(query)
-    res.header('Location', keywords[query]).status(302).send("");
+  const [keyword, arg] = query.split(' ');
+
+  if (keywords[keyword]) {
+    console.log(keyword)
+    res.header('Location', keywords[keyword].replace('%s', arg)).status(302).send("");
   } else {
     res.header('Location',req.url.split('?')[0]+ "notfound?" + req.url.split('?')[1]).status(302).send("")
   }
